@@ -15,7 +15,7 @@ nRF24L01(+) Interface | [RegisterAccess](https://github.com/Erriez/ArduinoLibrar
 
 ## Usage
 
-### Includefile
+### Include file
 ```c++
 #include <nRF24L01Iface.h>
 ```
