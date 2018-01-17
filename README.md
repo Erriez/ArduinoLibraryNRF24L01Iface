@@ -8,7 +8,7 @@ with a higher level functional API.
 A Nordic nRF24L01 or nRF24L01(+) 2.4GHz wireless transceiver connected to an 
 Arduino board.
 
-![alt text](https://raw.githubusercontent.com/Erriez/ArduinoLibraryNRF24L01Iface/master/extras/FritzingRotary.png "Nordic nRF24L01(+) - Arduino UNO schematic")
+![alt text](https://raw.githubusercontent.com/Erriez/ArduinoLibraryNRF24L01Iface/master/extras/nRF24L01_Arduino_UNO.png "Nordic nRF24L01(+) - Arduino UNO schematic")
 
 ## Example
 nRF24L01(+) Interface | [RegisterAccess](https://github.com/Erriez/ArduinoLibraryNRF24L01Iface/blob/master/examples/RegisterAccess/RegisterAccess.ino)
