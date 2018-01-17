@@ -1,0 +1,26 @@
+#######################################
+# Low-level nRF24L01(+) register read/write library for Arduino
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+nRF24L01Iface	    KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+readRegister		KEYWORD2
+writeCommand		KEYWORD2
+writeRegister		KEYWORD2
+beginTransaction	KEYWORD2
+endTransaction		KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+#######################################
+# Constants (LITERAL1)
+#######################################
