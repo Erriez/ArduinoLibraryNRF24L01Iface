@@ -7,10 +7,10 @@ functionality.
 
 ## Hardware
 
-Connect the nRF24L01(+) to any Arduino board with:
-1. 3.3V regulator.
-2. A SPI interface.
-3. 2 digital pins for CE and CSN.
+Connect the nRF24L01(+) to any Arduino board which contains:
+* An internal or external 3.3V regulator.
+* A SPI interface.
+* 2 digital pins for CE and CSN.
 
 Retransmits or communication loss may occur when connecting the nRF24L01
 directly to the 3.3V of an Arduino board, because lots of Arduino boards cannot 
@@ -30,14 +30,15 @@ separate 3.3V voltage regulator, such as:
 
 ![nRF24L01 power adapter](https://raw.githubusercontent.com/Erriez/ArduinoLibraryNRF24L01Iface/master/extras/nRF24L01_adapter.png)
 ```
-Pins:
-+5V
-GND
-7  -> CE
-8  -> CSN
-11 -> MOSI
-12 -> MISO
-13 -> SCK
+  UNO  | nRF24L01
+-------+---------
+VCC    | +5V
+GND    | GND
+7      | CE
+8      | CSN
+11     | MOSI
+12     | MISO
+13     | SCK
 ```
 
 ## Example
