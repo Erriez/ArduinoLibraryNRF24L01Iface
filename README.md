@@ -1,8 +1,9 @@
 # Low-level nRF24L01(+) register read/write library for Arduino
 
-This is a low-level Arduino library to read and write nRF24L01(+) registers 
-by using a SPI interface. It should be used in combination with a derived class 
-with a higher level functional API.
+This is an optimized low-level Arduino library to read and write nRF24L01(+) 
+registers by using a SPI interface. It should be used in combination with a 
+derived class which contains higher level read, write and configuration 
+functionality.
 
 ## Hardware
 A Nordic nRF24L01 or nRF24L01(+) 2.4GHz wireless transceiver connected to an 
@@ -10,10 +11,25 @@ Arduino board.
 
 ![Nordic nRF24L01(+) - Arduino UNO schematic](https://raw.githubusercontent.com/Erriez/ArduinoLibraryNRF24L01Iface/master/extras/nRF24L01_Arduino_UNO.png)
 
+Retransmits or communication loss may occur when connecting the nRF24L01
+directly to the 3.3V of an Arduino board, because lots of Arduino boards cannot 
+deliver enough power for the nRF24L01 chip.
+To increase communication reliability, use a nRF24L01 power adapter with a
+separate 3.3V voltage regulator, such as:
+
+![nRF24L01 power adapter](https://raw.githubusercontent.com/Erriez/ArduinoLibraryNRF24L01Iface/master/extras/nRF24L01_adapter.png)
+
 ## Example
 nRF24L01(+) Interface | [RegisterAccess](https://github.com/Erriez/ArduinoLibraryNRF24L01Iface/blob/master/examples/RegisterAccess/RegisterAccess.ino)
 
 ## Usage
+
+The CE pin should be controlled inside the derived class.
+
+### Library dependencies
+
+The following libraries are used: 
+* SPI.h
 
 ### Include file
 ```c++
@@ -26,20 +42,55 @@ class nRF24L01Example : nRF24L01Iface
 {
 public:
     // Constructor, initialize base class with SPI clock and SPI chip-select
-    nRF24L01Example(uint32_t spiClock, uint8_t csnPin) :
-            nRF24L01Iface(spiClock, csnPin)
+    nRF24L01Example(uint32_t spiClock, uint8_t cePin, uint8_t csnPin) :
+            nRF24L01Iface(spiClock, csnPin), 
+            _cePin(cePin)
     {
     };
+    
+    // Read status register
+    uint8_t readStatus() {
+        // Read status register
+        return readRegister(REG_STATUS);
+    }
+  
+    // Read from config register
+    uint8_t readConfig() {
+        // Read config register
+        return readRegister(REG_CONFIG);
+    }
+  
+    // Write to config register
+    void writeConfig(uint8_t val) {
+        // Write to config register
+        writeRegister(REG_CONFIG, val);
+    }
+    
+    // Write to TX pipe (0) registers
+    void openWritePipe0(const uint8_t *address) {
+        // Write 5 Bytes transmit pipe
+        // Now pipe 0 cannot be used for receive
+        writeRegister(REG_TX_ADDR, address, 5);
+    }
+    
+    // More functions such as read and write 
+    // ...
+ 
+private:
+    uint8_t _cePin;
 };
 ```
 
 ### Create an object from the custom derived class
 ```c++
 // SPI chip select pin
+#define CE_PIN      7
+  
+// SPI chip select pin
 #define CSN_PIN     8
   
-// Create object and initialize with SPI clock and SPI chip-select pin
-static nRF24L01Example radio((uint32_t)10000000UL, CSN_PIN);
+// Create object and initialize with SPI clock, CE pin and SPI chip-select pin
+static nRF24L01Example radio((uint32_t)10000000UL, CE_PIN, CSN_PIN);
 ```
 
 ### Use the class in an application
@@ -47,18 +98,17 @@ static nRF24L01Example radio((uint32_t)10000000UL, CSN_PIN);
 // Read status register
 uint8_t status = radio.readStatus();
   
-// Read config register
-uint8_t status = radio.readConfig();
+// Read from config register
+uint8_t config = radio.readConfig();
+  
+// Write to config register
+radio.writeConfig(0x08);
   
 // Define an address pipe for transmit
-const uint8_t pipe[5] = { 0x55, 0xa5, 0x5a, 0xaa, 0x99 };
+const uint8_t pipeAddress[5] = { 0x55, 0xa5, 0x5a, 0xaa, 0x99 };
   
 // Configure write pipe0
-radio.openWritePipe0(pipe);
-  
-// Read write pipe0 back
-uint8_t pipeReadback[5];
-radio.readWritePipe0(pipeReadback);
+radio.openWritePipe0(pipeAddress);
 ```
 
 ## Library installation
