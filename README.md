@@ -6,18 +6,39 @@ derived class which contains higher level read, write and configuration
 functionality.
 
 ## Hardware
-A Nordic nRF24L01 or nRF24L01(+) 2.4GHz wireless transceiver connected to an 
-Arduino board.
 
-![Nordic nRF24L01(+) - Arduino UNO schematic](https://raw.githubusercontent.com/Erriez/ArduinoLibraryNRF24L01Iface/master/extras/nRF24L01_Arduino_UNO.png)
+Connect the nRF24L01(+) to any Arduino board with:
+1. 3.3V regulator.
+2. A SPI interface.
+3. 2 digital pins for CE and CSN.
 
 Retransmits or communication loss may occur when connecting the nRF24L01
 directly to the 3.3V of an Arduino board, because lots of Arduino boards cannot 
-deliver enough power for the nRF24L01 chip.
+deliver enough power for the nRF24L01 chip. This can be solved with a separate
+voltage regulator, or nRF24L01 power adapter.
+
+### Schematic Arduino UNO with voltage regulator
+A Nordic nRF24L01 or nRF24L01(+) 2.4GHz wireless transceiver connected to an 
+Arduino UNO board with a separate 3.3V voltage regulator and 100uF elco:
+
+![Nordic nRF24L01(+) - Arduino UNO schematic](https://raw.githubusercontent.com/Erriez/ArduinoLibraryNRF24L01Iface/master/extras/nRF24L01_Arduino_UNO.png)
+
+### Schematic Arduino UNO with nRF24L01 power adapter
+
 To increase communication reliability, use a nRF24L01 power adapter with a
 separate 3.3V voltage regulator, such as:
 
 ![nRF24L01 power adapter](https://raw.githubusercontent.com/Erriez/ArduinoLibraryNRF24L01Iface/master/extras/nRF24L01_adapter.png)
+```
+Pins:
++5V
+GND
+7  -> CE
+8  -> CSN
+11 -> MOSI
+12 -> MISO
+13 -> SCK
+```
 
 ## Example
 nRF24L01(+) Interface | [RegisterAccess](https://github.com/Erriez/ArduinoLibraryNRF24L01Iface/blob/master/examples/RegisterAccess/RegisterAccess.ino)
@@ -83,7 +104,7 @@ private:
 
 ### Create an object from the custom derived class
 ```c++
-// SPI chip select pin
+// CE pin to enable RX and TX modes 
 #define CE_PIN      7
   
 // SPI chip select pin
