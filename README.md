@@ -30,15 +30,16 @@ separate 3.3V voltage regulator, such as:
 
 ![nRF24L01 power adapter](https://raw.githubusercontent.com/Erriez/ArduinoLibraryNRF24L01Iface/master/extras/nRF24L01_adapter.png)
 ```
-  UNO  | nRF24L01
--------+---------
-VCC    | +5V
-GND    | GND
-7      | CE
-8      | CSN
-11     | MOSI
-12     | MISO
-13     | SCK
+      Arduino       | nRF24L01
+   UNO   | Mega2560 | adapter
+---------+----------+---------
+   VCC   |   VCC    |  +5V
+   GND   |   GND    |  GND
+   7     |   7      |  CE
+   8     |   8      |  CSN
+   11    |   51     |  MOSI
+   12    |   50     |  MISO
+   13    |   52     |  SCK
 ```
 
 ## Example
