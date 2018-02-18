@@ -21,14 +21,14 @@ voltage regulator, or nRF24L01 power adapter.
 A Nordic nRF24L01 or nRF24L01(+) 2.4GHz wireless transceiver connected to an 
 Arduino UNO board with a separate 3.3V voltage regulator and 100uF elco:
 
-![Nordic nRF24L01(+) - Arduino UNO schematic](https://raw.githubusercontent.com/Erriez/ArduinoLibraryNRF24L01Iface/master/extras/nRF24L01_Arduino_UNO.png)
+![Nordic nRF24L01(+) - Arduino UNO schematic](https://raw.githubusercontent.com/Erriez/ErriezNRF24L01Iface/master/extras/nRF24L01_Arduino_UNO.png)
 
 ### Schematic Arduino UNO with nRF24L01 power adapter
 
 To increase communication reliability, use a nRF24L01 power adapter with a
 separate 3.3V voltage regulator, such as:
 
-![nRF24L01 power adapter](https://raw.githubusercontent.com/Erriez/ArduinoLibraryNRF24L01Iface/master/extras/nRF24L01_adapter.png)
+![nRF24L01 power adapter](https://raw.githubusercontent.com/Erriez/ErriezNRF24L01Iface/master/extras/nRF24L01_adapter.png)
 ```
       Arduino       | nRF24L01
    UNO   | Mega2560 | adapter
@@ -43,7 +43,7 @@ separate 3.3V voltage regulator, such as:
 ```
 
 ## Example
-nRF24L01(+) Interface | [RegisterAccess](https://github.com/Erriez/ArduinoLibraryNRF24L01Iface/blob/master/examples/RegisterAccess/RegisterAccess.ino)
+nRF24L01(+) Interface | [RegisterAccess](https://github.com/Erriez/ErriezNRF24L01Iface/blob/master/examples/RegisterAccess/RegisterAccess.ino)
 
 ## Usage
 
@@ -137,6 +137,6 @@ radio.openWritePipe0(pipeAddress);
 ## Library installation
 1. Start the Arduino IDE.
 2. Download the latest version from:  
-   https://github.com/Erriez/ArduinoLibraryNRF24L01Iface/archive/master.zip
+   https://github.com/Erriez/ErriezNRF24L01Iface/archive/master.zip
 3. Click Sketch | Include Library | Add .ZIP Library... and select this ZIP.
 5. Run the example.

@@ -25,7 +25,7 @@
 /*
  * Nordic nRF24L01(+) register read/write library for Arduino
  *
- * Source: https://github.com/Erriez/ArduinoLibraryNRF24L01Iface
+ * Source: https://github.com/Erriez/ErriezNRF24L01Iface
  */
 
 #ifndef NRF24L01_REGS_H_
