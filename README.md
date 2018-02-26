@@ -23,26 +23,30 @@ Arduino UNO board with a separate 3.3V voltage regulator and 100uF elco:
 
 ![Nordic nRF24L01(+) - Arduino UNO schematic](https://raw.githubusercontent.com/Erriez/ErriezNRF24L01Iface/master/extras/nRF24L01_Arduino_UNO.png)
 
-### Schematic Arduino UNO with nRF24L01 power adapter
+### Schematic Arduino UNO with nRF24L01+ power adapter
 
 To increase communication reliability, use a nRF24L01 power adapter with a
 separate 3.3V voltage regulator, such as:
 
 ![nRF24L01 power adapter](https://raw.githubusercontent.com/Erriez/ErriezNRF24L01Iface/master/extras/nRF24L01_adapter.png)
-```
-      Arduino       | nRF24L01
-   UNO   | Mega2560 | adapter
----------+----------+---------
-   VCC   |   VCC    |  +5V
-   GND   |   GND    |  GND
-   7     |   7      |  CE
-   8     |   8      |  CSN
-   11    |   51     |  MOSI
-   12    |   50     |  MISO
-   13    |   52     |  SCK
-```
+
+
+
+| nRF24L01+<br />Pin | nRF24L01+<br />Function | nRF24L01+<br />adapter | Arduino UNO/Mini | Mega2560 | ESP8266<br />NodeMCU |
+| :----------------: | :---------------------: | :--------------------: | :--------------: | :------: | :------------------: |
+|       +3.3V        |       3.3V direct       |           -            |       3.3V       |   3.3V   |         3.3V         |
+|         -          |     +5V via adapter     |          +5V           |       +5V        |   +5V    |          -           |
+|         1          |           GND           |          GND           |       GND        |   GND    |         GND          |
+|         3          |           CE            |           CE           |        7         |    7     |          D0          |
+|         4          |           CSN           |          CSN           |        8         |    8     |          D8          |
+|         6          |          MOSI           |           MO           |        11        |    51    |          D7          |
+|         7          |          MISO           |           MI           |        12        |    50    |          D6          |
+|         5          |           SCK           |          SCK           |        13        |    52    |          D5          |
+
+
 
 ## Example
+
 nRF24L01(+) Interface | [RegisterAccess](https://github.com/Erriez/ErriezNRF24L01Iface/blob/master/examples/RegisterAccess/RegisterAccess.ino)
 
 ## Usage
