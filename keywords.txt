@@ -5,7 +5,7 @@
 #######################################
 # Datatypes (KEYWORD1)
 #######################################
-nRF24L01Iface	    KEYWORD1
+nRF24L01Iface	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
